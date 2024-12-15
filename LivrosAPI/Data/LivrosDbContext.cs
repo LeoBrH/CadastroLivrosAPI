@@ -16,6 +16,7 @@ namespace LivrosAPI.Data
         public DbSet<Livro_Autor> Livro_Autor { get; set; }
         public DbSet<Livro_Assunto> Livro_Assunto { get; set; }
         public DbSet<Livro_Valor> Livro_Valor { get; set; }
+        public DbSet<RelatorioLivrosAutor> View_LivrosPorAutor { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -91,6 +92,12 @@ namespace LivrosAPI.Data
                 .HasOne(lv => lv.Forma_Compra)
                 .WithMany(a => a.Livro_Valor)
                 .HasForeignKey(lv => lv.Forma_Compra_CodFC);
+            #endregion
+
+            #region Relatorio
+            modelBuilder.Entity<RelatorioLivrosAutor>()
+                .HasNoKey()
+                .ToView("View_AutorLivros");
             #endregion
         }
 

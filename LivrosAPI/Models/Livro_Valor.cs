@@ -6,9 +6,6 @@ namespace LivrosAPI.Models
 {
     public class Livro_Valor
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Codlv { get; set; }
-
         [ForeignKey("Livro")]
         public int Livro_Codl { get; set; }
 
